@@ -14,7 +14,7 @@ import apiPublicacion.IPublicacion;
  *
  * @author PC
  */
-public abstract class Publicador implements IPublicacion{
+public class Publicador implements IPublicacion{
     protected String nombre;
     protected String idPublicacion;
     protected Date fechaPublicacion;
@@ -24,12 +24,25 @@ public abstract class Publicador implements IPublicacion{
     
     public Publicador(){
     	
-    }    
+    }   
+    
+    public Publicador(int tipo) {
+    	this.tipoPublicacion = tipo;
+    }
+    
+    
     protected void generarIdBase() {
     	/*Random r = new Random(System.currentTimeMillis());
     	 r.
     	r.nextInt(5);*/
     	
+    }
+    
+    public Date generarFechaPub() {
+    	return fechaPublicacion;
+    }
+    public Date generarFechaCond() {
+    	return fechaCondicion;
     }
     
     public String getNombre() {
@@ -52,8 +65,17 @@ public abstract class Publicador implements IPublicacion{
         return tipoPublicacion;
     }
     
+    public void setTipoPublicacion(int tipo) {
+        this.tipoPublicacion = tipo;
+    }
+    
+    
     public int getActivo() {
         return activo;
+    }
+    
+    public void setActivo(int activo) {
+    	this.activo = activo;
     }
     
     

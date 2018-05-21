@@ -10,8 +10,6 @@ import apiPublicacion.INotificable;
 import apiPublicacion.IPublicacion;
 import datos.publicacion.publicaciones.PublicacionDAO;
 import logica.publicacion.publicaciones.Publicador;
-import logica.publicacion.publicaciones.PublicadorHallado;
-import logica.publicacion.publicaciones.PublicadorPerdido;
 
 public class PublicacionMaster implements IBuscador,ICreadorPublicacion,INotificable,IHistorial {
 	private PublicacionDAO publDAO = new PublicacionDAO();
@@ -50,7 +48,7 @@ public class PublicacionMaster implements IBuscador,ICreadorPublicacion,INotific
 
 	@Override
 	public void crearPublicacion(int tipo) {
-		// TODO Auto-generated method stub
+		publicacion = new Publicador(tipo); 
 		
 	}
 
@@ -71,14 +69,13 @@ public class PublicacionMaster implements IBuscador,ICreadorPublicacion,INotific
 
 	@Override
 	public void cargarPublicacion(String idUsuario, String idPublicacion) {
-		// TODO Auto-generated method stub
+		publicacionCargada = publDAO.cargarPublicacion(idUsuario, idPublicacion);
 		
 	}
 
 
 	@Override
 	public void registrarObjetoHallado(String nombre, String descripcion, String estado, int idCategoria) {
-		publicacion = new PublicadorHallado();
 		publicacion.setNombre(nombre);
 		publDAO.setPublicacion(publicacion);	
 		publicar();
@@ -88,7 +85,6 @@ public class PublicacionMaster implements IBuscador,ICreadorPublicacion,INotific
 
 	@Override
 	public void registrarObjetoPerdido(String nombre, String descripcion, String estado, int idCategoria) {
-		publicacion = new PublicadorPerdido();
 		publicacion.setNombre(nombre);
 		publDAO.setPublicacion(publicacion);
 		publicar();		
@@ -104,14 +100,12 @@ public class PublicacionMaster implements IBuscador,ICreadorPublicacion,INotific
 
 	@Override
 	public ArrayList<IPublicacion> verMisPublicaciones(String idUser, int tipo) {
-		// TODO Auto-generated method stub
-		return null;
+		return publDAO.cargarPublicaciones(idUser, tipo);
 	}
 
 
 	@Override
-	public IPublicacion cargarPublicacion(String idUser, String idPublicacion, int tipo) {
-		// TODO Auto-generated method stub
+	public IPublicacion cargarPublicacion(String idUser, String idPublicacion, int tipo) {		
 		return null;
 	}
 	

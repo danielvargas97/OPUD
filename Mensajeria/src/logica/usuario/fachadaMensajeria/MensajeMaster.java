@@ -8,9 +8,10 @@ import datos.usuario.mensajeria.MensajeriaDAO;
 import logica.usuario.bandejaInterface.IBandejaEntrada;
 import logica.usuario.mensajeria.Mensaje;
 import logica.usuario.mensajeriaAPI.IMensaje;
+import logica.usuario.mensajeriaAPI.IMensajeria;
 
 
-public class MensajeMaster {
+public class MensajeMaster implements IMensajeria {
 	private IMensaje mensajeActual;
 	private IBandejaEntrada bandeja;
 	private MensajeriaDAO mdao;
@@ -28,10 +29,15 @@ public class MensajeMaster {
 	}
 	
 	
-	public void enviarMensaje(IMensaje mensaje) throws SQLException {
+	public void enviarMensaje(IMensaje mensaje) {
 		bandeja.enviarMensaje(mensajeActual);
 		mdao.setMensaje((Mensaje)bandeja.verMensajeEntrante(0));
-		mdao.insertar();
+		try {
+			mdao.insertar();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void eliminarMensajeEntrante(int index) {
@@ -65,6 +71,7 @@ public class MensajeMaster {
 		mdao = new MensajeriaDAO();
 		mdao.cargarCorreo(id);
 		bandeja = mdao.getBandeja();
+		System.out.println("x");
 	}
 	
 	

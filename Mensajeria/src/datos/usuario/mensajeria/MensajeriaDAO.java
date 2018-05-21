@@ -89,7 +89,6 @@ public class MensajeriaDAO {
 			PreparedStatement ps = conn.prepareCall(sql.toString());
 			ps.setString(2, id);
 			ResultSet rs = ps.executeQuery();
-			
 			while(rs.next()) {
 				Mensaje m = new Mensaje();
 				m.setIdMensaje(rs.getString(1));
