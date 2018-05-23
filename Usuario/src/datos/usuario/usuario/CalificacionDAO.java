@@ -2,43 +2,81 @@ package datos.usuario.usuario;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import datos.conexion.implementacion.ConexionOracle;
-import datos.conexion.interfaz.ConexionDB;
+import logica.usuario.calificacion.Calificacion;
+import logica.usuario.calificador.Calificador;
 
 public class CalificacionDAO {
-	
+	private Calificador calificador;
 	
 	public CalificacionDAO() {
 		
 	}
 	
 	public void insertarCalificacion() throws SQLException {
-		try {
-			StringBuilder sql = new StringBuilder();
-			sql.append("INSERT INTO CALIFICACION ");
-			sql.append("(idCalificador,idCalificado,nota) ");
-			sql.append("values (?,?,?)");
-			Connection db = ConexionOracle.getInstance().tomarConexion();
+		StringBuilder sql = new StringBuilder();
+		ConexionOracle myConn = ConexionOracle.getInstance();
+		
+		sql.append("INSERT INTO CALIFICACION ");
+		sql.append("VALUES (?,?,?)");
+		
+		try {		
+			Connection db = myConn.tomarConexion();
 			PreparedStatement ps = db.prepareStatement(sql.toString());
-			ps.setString(1, "");
-			ps.setString(2, "");
-			ps.setInt(3, 0);
+			ps.setString(1, calificador.getCalificador());
+			ps.setString(2, calificador.getCalificado());
+			ps.setInt(3, calificador.getNota());
 			ps.executeUpdate();
 			ps.close();
-			ConexionOracle.getInstance().realizarCommit();
+			myConn.realizarCommit();
 		}
 		catch(SQLException ex) {
 			throw new SQLException("Error en la insercion de calificacion");
 		}
 		finally {
-			ConexionOracle.getInstance().soltarConexion();
+			myConn.soltarConexion();
 		}
 	}
 	
-	public void verCalificacion() {
+	public Calificacion verCalificacion(String id) {
+		StringBuilder sql = new StringBuilder();
+		ConexionOracle myConn = ConexionOracle.getInstance();
 		
+		sql.append("SELECT AVG(NOTA) FROM CALIFICACION ");
+		sql.append("WHERE IDCALIFICADO=?");
+		
+		try {		
+			Connection db = myConn.tomarConexion();
+			PreparedStatement ps = db.prepareStatement(sql.toString());
+			ps.setString(1, id);
+			Calificacion calificacion = new Calificacion();
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				calificacion.setNota(rs.getInt(1));
+			}
+			
+			return calificacion;
+		}
+		catch(SQLException ex) {
+			ex.printStackTrace();
+			return null;
+		}
+		finally {
+			myConn.soltarConexion();
+		}
+	}
+
+	public Calificador getCalificador() {
+		return calificador;
+	}
+
+	public void setCalificador(Calificador calificador) {
+		this.calificador = calificador;
 	}
 	
 }

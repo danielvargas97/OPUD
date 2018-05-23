@@ -7,6 +7,8 @@ package logica.usuario.usuario;
 
 import java.util.List;
 
+import logica.usuario.contrasena.Contrasena;
+
 
 /**
  *
@@ -20,8 +22,6 @@ public class Usuario {
     private String idUser;
     private String tipoDocumento;
 
-    //private iMensaje mensajeria;
-    //private i
     private Contrasena contrasena;
  
     
@@ -29,34 +29,16 @@ public class Usuario {
     	
     }
     
-    /*
-    public Usuario(iMensaje mensajeria){
-        this.mensajeria = mensajeria;
-    }
-    
-    public Usuario(iMensaje mensajeria,Contrasena contrasena) {
-    	this.mensajeria = mensajeria;
-    	this.contrasena = contrasena;
-    }
-    
-    
-    public List<String> verMensaje(int index) {
-    	return mensajeria.verMensaje(index);
-    }
-    
-    public void redactarMensaje(String destino,String asunto,String mensaje) {
-    	mensajeria.redactar(idUser, destino, asunto, mensaje);
-    	
-    }
-     */
-    
     public void asignarContrasena(String nuevaContrasena){
         try{
-            contrasena.setContrasena(nuevaContrasena);
+            if(contrasena!=null)
+            	contrasena.setContrasena(nuevaContrasena);
+            else
+            	contrasena = new Contrasena(nuevaContrasena);
         }
         catch(NullPointerException e){
             e.printStackTrace();
-            contrasena = new Contrasena(nuevaContrasena);
+            
         }
     }
     
@@ -103,5 +85,17 @@ public class Usuario {
     public String getIdUser(){
     	return this.idUser;
     }
+
+	public String getTipoDocumento() {
+		return tipoDocumento;
+	}
+
+	public void setTipoDocumento(String tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
+	}
+
+	public void setIdUser(String idUser) {
+		this.idUser = idUser;
+	}
     
 }

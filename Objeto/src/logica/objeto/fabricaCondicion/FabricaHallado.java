@@ -6,7 +6,6 @@ import logica.objeto.condicion.iCondicionable;
 public class FabricaHallado extends FabricaCondicion {
 
 	public FabricaHallado() {
-		super();
 	}
 	
 	@Override

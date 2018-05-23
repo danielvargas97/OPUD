@@ -3,11 +3,13 @@ package logica.publicacion.fachada;
 import java.util.ArrayList;
 import java.util.List;
 
+import apiObjeto.IObjeto;
 import apiPublicacion.IBuscador;
 import apiPublicacion.ICreadorPublicacion;
 import apiPublicacion.IHistorial;
 import apiPublicacion.INotificable;
 import apiPublicacion.IPublicacion;
+import apiUsuario.IUsuario;
 import datos.publicacion.publicaciones.PublicacionDAO;
 import logica.publicacion.publicaciones.Publicador;
 
@@ -107,6 +109,20 @@ public class PublicacionMaster implements IBuscador,ICreadorPublicacion,INotific
 	@Override
 	public IPublicacion cargarPublicacion(String idUser, String idPublicacion, int tipo) {		
 		return null;
+	}
+
+
+	@Override
+	public void asignarUsuario(IUsuario user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void asignarObjeto(IObjeto objeto) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

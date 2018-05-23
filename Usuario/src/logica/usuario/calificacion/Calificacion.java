@@ -25,5 +25,16 @@ public class Calificacion implements iCalificacion{
     public int verCalificacion() {
         return nota;
     }
+
+	public String getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setNota(int nota) {
+		this.nota = nota;
+	}
+    
+    
+    
     
 }

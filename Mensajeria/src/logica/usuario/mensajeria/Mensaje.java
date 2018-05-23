@@ -8,7 +8,8 @@ package logica.usuario.mensajeria;
 import java.util.Date;
 import java.util.Random;
 
-import logica.usuario.mensajeriaAPI.IMensaje;
+import apiMensajeria.IMensaje;
+
 
 /**
  *

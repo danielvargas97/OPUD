@@ -8,8 +8,8 @@ package logica.usuario.bandeja;
 import java.util.ArrayList;
 import java.util.List;
 
-import logica.usuario.bandejaInterface.IBandejaEntrada;
-import logica.usuario.mensajeriaAPI.IMensaje;
+import apiMensajeria.IMensaje;
+
 
 /**
  *
@@ -83,7 +83,7 @@ public class BandejaEntrada implements IBandejaEntrada {
 	public IMensaje verMensajeSalida(int index) {
 		
 		return this.getBuzonSalida().get(index);
-	}    
+	}
     
 }
 

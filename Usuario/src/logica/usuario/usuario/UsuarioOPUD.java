@@ -19,8 +19,12 @@ public class UsuarioOPUD {
     private String codigo;
     private iCalificable calificador;
     private iCalificacion calificacion; 
-    //private iPublicador publicador;
             
+    
+    public UsuarioOPUD(Usuario usuario) {
+    	this.usuario = usuario;
+    }
+    
     
     public UsuarioOPUD(Usuario usuario,iCalificacion calificacion){
     	this.calificacion = calificacion;

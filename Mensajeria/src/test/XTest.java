@@ -2,8 +2,8 @@ package test;
 
 import javax.swing.JOptionPane;
 
+import apiMensajeria.IMensajeria;
 import logica.usuario.fachadaMensajeria.MensajeMaster;
-import logica.usuario.mensajeriaAPI.IMensajeria;
 
 public class XTest {
 

@@ -13,18 +13,16 @@ import logica.usuario.mensajeria.Mensaje;
 public class MensajeriaDAO {
 	private BandejaEntrada bandeja;	
 	private Mensaje m;
-	StringBuilder sql;
+	
 	
 	public MensajeriaDAO() {
-		sql = new StringBuilder();
+		
 		bandeja = new BandejaEntrada();
 	}
 	
 	public void insertar() throws SQLException {
-		
-		
+		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO MENSAJE VALUES (?,?,?,?,?,?,?)");
-		sql.append("values (?,?,?)");
 		ConexionOracle myConn = ConexionOracle.getInstance();
 		try {			
 			Connection conn = myConn.tomarConexion();
@@ -50,13 +48,14 @@ public class MensajeriaDAO {
 	}
 	
 	private void cargarCorreoEntrante(String id) {
+		StringBuilder sql = new StringBuilder();
 		ConexionOracle myConn = ConexionOracle.getInstance();		
 		sql.append("SELECT * FROM MENSAJE WHERE IDDESTINO = ?");
 
 		try {
 			Connection conn = myConn.tomarConexion();
 			PreparedStatement ps = conn.prepareCall(sql.toString());
-			ps.setString(3, id);
+			ps.setString(1, id);
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
@@ -65,7 +64,7 @@ public class MensajeriaDAO {
 				m.setOrigen(rs.getString(2));
 				m.setDestino(rs.getString(3));
 				m.setAsunto(rs.getString(4));
-				m.setIdMensaje(rs.getString(5));
+				m.setMensaje(rs.getString(5));
 				m.setFecha(rs.getDate(6));
 				m.setLeido(rs.getInt(7));
 				bandeja.getBuzonEntrada().add(m);
@@ -81,13 +80,14 @@ public class MensajeriaDAO {
 	}
 	
 	private void cargarCorreoSaliente(String id) {
+		StringBuilder sql = new StringBuilder();
 		ConexionOracle myConn = ConexionOracle.getInstance();
 		sql.append("SELECT * FROM MENSAJE WHERE IDORIGEN = ?");
 
 		try {
 			Connection conn = myConn.tomarConexion();
-			PreparedStatement ps = conn.prepareCall(sql.toString());
-			ps.setString(2, id);
+			PreparedStatement ps = conn.prepareStatement(sql.toString());
+			ps.setString(1, id);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				Mensaje m = new Mensaje();
@@ -95,14 +95,11 @@ public class MensajeriaDAO {
 				m.setOrigen(rs.getString(2));
 				m.setDestino(rs.getString(3));
 				m.setAsunto(rs.getString(4));
-				m.setIdMensaje(rs.getString(5));
+				m.setMensaje(rs.getString(5));
 				m.setFecha(rs.getDate(6));
 				m.setLeido(rs.getInt(7));
 				bandeja.getBuzonEntrada().add(m);
-			}
-			
-
-			
+			}			
 		}
 		catch(SQLException ex) {
 			ex.printStackTrace();

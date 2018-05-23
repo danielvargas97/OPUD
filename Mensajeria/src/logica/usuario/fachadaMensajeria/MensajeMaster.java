@@ -4,11 +4,11 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
+import apiMensajeria.IMensaje;
+import apiMensajeria.IMensajeria;
 import datos.usuario.mensajeria.MensajeriaDAO;
-import logica.usuario.bandejaInterface.IBandejaEntrada;
+import logica.usuario.bandeja.IBandejaEntrada;
 import logica.usuario.mensajeria.Mensaje;
-import logica.usuario.mensajeriaAPI.IMensaje;
-import logica.usuario.mensajeriaAPI.IMensajeria;
 
 
 public class MensajeMaster implements IMensajeria {
@@ -59,8 +59,7 @@ public class MensajeMaster implements IMensajeria {
 		m.setMensaje(mensaje);
 		m.setFecha(new Date());
 		m.setLeido(0);		
-		mensajeActual = m;
-		
+		mensajeActual = m;		
 	}
 	
 	public IMensaje verMensajeRedactado() {
@@ -71,7 +70,6 @@ public class MensajeMaster implements IMensajeria {
 		mdao = new MensajeriaDAO();
 		mdao.cargarCorreo(id);
 		bandeja = mdao.getBandeja();
-		System.out.println("x");
 	}
 	
 	

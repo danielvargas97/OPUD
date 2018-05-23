@@ -5,7 +5,6 @@ import logica.objeto.condicion.iCondicionable;
 
 public class FabricaPerdido extends FabricaCondicion {
 	public FabricaPerdido() {
-		super();
 	}
 	@Override
 	public iCondicionable crearCondicion() {

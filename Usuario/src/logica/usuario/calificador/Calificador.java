@@ -38,5 +38,17 @@ public class Calificador implements iCalificable,ICotaNota {
     private boolean revisarNota(int nota){
         return (nota>=NOTA_MINIMA && nota<=NOTA_MAXIMA);
     }
+	public String getCalificador() {
+		return calificador;
+	}
+	public String getCalificado() {
+		return calificado;
+	}
+	public int getNota() {
+		return nota;
+	}
+    
+    
+    
     
 }
