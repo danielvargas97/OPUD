@@ -20,6 +20,10 @@ public class UsuarioOPUD {
     private iCalificable calificador;
     private iCalificacion calificacion; 
             
+    public UsuarioOPUD() {
+    	
+    }
+    
     
     public UsuarioOPUD(Usuario usuario) {
     	this.usuario = usuario;
@@ -60,4 +64,12 @@ public class UsuarioOPUD {
     public void asignarCalificador(iCalificable calificador, String calificante, String calificado) {
     	this.calificador = calificador;
     }
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+    
+    
+    
+    
 }

@@ -5,6 +5,8 @@ import java.util.List;
 
 import apiObjeto.IObjeto;
 import apiObjeto.IObjetoRegistro;
+import datos.objeto.objetos.CategoriaDAO;
+import datos.objeto.objetos.CondicionDAO;
 import datos.objeto.objetos.ObjetoDAO;
 import logica.objeto.fabricaCondicion.FabricaCondicion;
 import logica.objeto.fabricaCondicion.FabricaHallado;
@@ -16,6 +18,8 @@ import logica.objeto.registrador.RegistradorOP;
 public class ObjetoMaster implements IObjetoRegistro {
 	private IRegistradorObjetos creador;
 	private ObjetoDAO objDao = new ObjetoDAO();
+	private CategoriaDAO catDao = new CategoriaDAO();
+	private CondicionDAO condDao = new CondicionDAO();
 	private FabricaCondicion fabricaCond;
 	//private IObjeto objeto;
 	
@@ -57,7 +61,7 @@ public class ObjetoMaster implements IObjetoRegistro {
 	
 	public IObjeto cargarObjeto(String idObjeto) {
 		Objeto cargado = objDao.cargarObjeto(idObjeto);		
-		generarFabrica(objDao.cargarIDCondicion(idObjeto));
+		generarFabrica(condDao.cargarIDCondicion(idObjeto));
 		cargado.asignarCondicion(fabricaCond.crearCondicion());		
 		IObjeto obj = cargado;
 		
@@ -65,7 +69,7 @@ public class ObjetoMaster implements IObjetoRegistro {
 	}
 	
 	public List<String> verCategoria(){		
-		return objDao.cargarCategoria();
+		return catDao.cargarCategoria();
 	}
 	
 	

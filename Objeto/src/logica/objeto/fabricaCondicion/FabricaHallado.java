@@ -1,7 +1,7 @@
 package logica.objeto.fabricaCondicion;
 
 import logica.objeto.condicion.Hallado;
-import logica.objeto.condicion.iCondicionable;
+import logica.objeto.condicionAbs.iCondicionable;
 
 public class FabricaHallado extends FabricaCondicion {
 

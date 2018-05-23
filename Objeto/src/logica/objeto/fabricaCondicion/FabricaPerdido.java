@@ -1,7 +1,7 @@
 package logica.objeto.fabricaCondicion;
 
 import logica.objeto.condicion.Perdido;
-import logica.objeto.condicion.iCondicionable;
+import logica.objeto.condicionAbs.iCondicionable;
 
 public class FabricaPerdido extends FabricaCondicion {
 	public FabricaPerdido() {

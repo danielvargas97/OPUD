@@ -13,6 +13,11 @@ public class Administrador {
     private Usuario usuario;
     private String nickname;
     
+    
+    public Administrador() {
+    	
+    }
+    
     public Administrador(Usuario usuario) {
         this.usuario = usuario;
     }
@@ -23,5 +28,13 @@ public class Administrador {
     public void setNickname(String nickname) {
     	this.nickname = nickname;
     }
-    
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+        
 }

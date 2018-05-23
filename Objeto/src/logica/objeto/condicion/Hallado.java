@@ -1,5 +1,7 @@
 package logica.objeto.condicion;
 
+import logica.objeto.condicionAbs.Condicion;
+
 public class Hallado extends Condicion{	
 	public Hallado() {
 		super();

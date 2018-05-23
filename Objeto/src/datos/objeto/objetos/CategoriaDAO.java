@@ -1,84 +1,71 @@
-package datos.usuario.usuario;
+package datos.objeto.objetos;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import datos.conexion.implementacion.ConexionOracle;
-import logica.usuario.usuario.Administrador;
+import logica.objeto.objetos.Categoria;
 
-public class AdministradorDAO {
-	private Administrador admin;
+public class CategoriaDAO {
 	
-	public AdministradorDAO() {
+	public CategoriaDAO() {
 		
 	}
 	
 	
-	public void insertar() {
+	public Categoria cargarCategoria(String idCat) {
 		StringBuilder sql = new StringBuilder();
-		
-		sql.append("INSERT INTO ADMINISTRADOR VALUES (?,?)");
-		
+		sql.append("SELECT IDCATEGORIA,NOMBRE,DESCRIPCION FROM CATEGORIA WHERE IDCATEGORIA=?");
 		ConexionOracle myConn = ConexionOracle.getInstance();
 		try {
 			Connection conn = myConn.tomarConexion();
 			PreparedStatement ps = conn.prepareCall(sql.toString());
-			
-			ps.setString(1, admin.getNickname());
-			ps.setString(2, admin.getUsuario().getIdUser());
-			
-			ps.executeUpdate();
-			ps.close();
+			ResultSet rs = ps.executeQuery();
+			ps.setString(1, idCat);			
+			Categoria cat = new Categoria();
+			while(rs.next()) {				
+				cat.setIdCategoria(Integer.parseInt(rs.getString(1)));
+				cat.setNombre(rs.getString(2));
+				cat.setDescripcion(rs.getString(3));
+			}			
+			return cat;
 		}
 		catch(SQLException ex) {
 			ex.printStackTrace();
+			return null;
 		}
 		finally {
 			myConn.soltarConexion();
-		}
+		}		
+		
 	}
 	
-	
-	
-	public Administrador cargarUsuario(String id) {
+	public List<String> cargarCategoria(){
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT * FROM ADMINISTRADOR WHERE IDUSUARIO=?");
+		sql.append("SELECT NOMBRE FROM CATEGORIA");
 		ConexionOracle myConn = ConexionOracle.getInstance();
 		try {
 			Connection conn = myConn.tomarConexion();
 			PreparedStatement ps = conn.prepareCall(sql.toString());
-			ps.setString(1, id);
-			
 			ResultSet rs = ps.executeQuery();
-			Administrador unUsuario = new Administrador();
+			List<String> categorias = new ArrayList<String>();
 			while(rs.next()) {
-				unUsuario.setNickname(rs.getString(1));				
-			}
-			
-			return unUsuario;			
-			
+				categorias.add(rs.getString(1));				
+			}			
+			return categorias;
 		}
-		catch(Exception ex) {
+		catch(SQLException ex) {
 			ex.printStackTrace();
 			return null;
 		}
 		finally {
 			myConn.soltarConexion();
 		}
-		
 	}
-
-
-	public Administrador getAdmin() {
-		return admin;
-	}
-
-
-	public void setAdmin(Administrador admin) {
-		this.admin = admin;
-	}
-
+	
 	
 }
