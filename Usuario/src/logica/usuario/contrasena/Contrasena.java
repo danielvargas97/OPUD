@@ -5,11 +5,13 @@
  */
 package logica.usuario.contrasena;
 
+import logica.usuario.contrasenaInterface.IContrasena;
+
 /**
  *
  * @author PC
  */
-public class Contrasena {
+public class Contrasena implements IContrasena {
     private String contrasena;
     
     public Contrasena(String contrasena){

@@ -30,6 +30,7 @@ public class PublicacionMaster implements IBuscador,ICreadorPublicacion,INotific
 	public ArrayList<IPublicacion> historial(String idUsuario, String fechaInicio, String fechaFinal,
 			int tipoPublicacion) {
 		// TODO Auto-generated method stub
+		//publDAO.cargarPublicacion(idUsuario, idPublicacion);
 		return null;
 	}
 
@@ -71,7 +72,7 @@ public class PublicacionMaster implements IBuscador,ICreadorPublicacion,INotific
 
 	@Override
 	public void cargarPublicacion(String idUsuario, String idPublicacion) {
-		publicacionCargada = publDAO.cargarPublicacion(idUsuario, idPublicacion);
+		publicacionCargada = publDAO.cargarPublicacion(idUsuario, idPublicacion,1);
 		
 	}
 
@@ -96,7 +97,7 @@ public class PublicacionMaster implements IBuscador,ICreadorPublicacion,INotific
 	@Override
 	public ArrayList<IPublicacion> buscarPublicacion(String textoBusqueda, int tipoPublicacion) {
 		// TODO Auto-generated method stub
-		return null;
+		return publDAO.buscarPublicacion(textoBusqueda, tipoPublicacion);
 	}
 
 
@@ -108,7 +109,7 @@ public class PublicacionMaster implements IBuscador,ICreadorPublicacion,INotific
 
 	@Override
 	public IPublicacion cargarPublicacion(String idUser, String idPublicacion, int tipo) {		
-		return null;
+		return publDAO.cargarPublicacion(idUser, idPublicacion,tipo);
 	}
 
 

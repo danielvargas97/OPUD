@@ -8,7 +8,7 @@ package logica.objeto.objetos;
 import java.util.Random;
 
 import apiObjeto.IObjeto;
-import logica.objeto.condicionAbs.iCondicionable;
+import logica.objeto.condicion.iCondicionable;
 
 /**
  *

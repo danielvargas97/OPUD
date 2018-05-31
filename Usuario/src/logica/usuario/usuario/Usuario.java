@@ -5,9 +5,7 @@
  */
 package logica.usuario.usuario;
 
-import java.util.List;
-
-import logica.usuario.contrasena.Contrasena;
+import logica.usuario.contrasenaInterface.IContrasena;
 
 
 /**
@@ -22,25 +20,11 @@ public class Usuario {
     private String idUser;
     private String tipoDocumento;
 
-    private Contrasena contrasena;
- 
+    private IContrasena contrasena;
     
     public Usuario() {
     	
-    }
-    
-    public void asignarContrasena(String nuevaContrasena){
-        try{
-            if(contrasena!=null)
-            	contrasena.setContrasena(nuevaContrasena);
-            else
-            	contrasena = new Contrasena(nuevaContrasena);
-        }
-        catch(NullPointerException e){
-            e.printStackTrace();
-            
-        }
-    }
+    }    
     
     public String getNombre() {
         return nombre;
@@ -74,11 +58,11 @@ public class Usuario {
         this.correo = correo;
     }
 
-    public Contrasena getContrasena() {
+    public IContrasena getContrasena() {
         return contrasena;
     }
 
-    public void setContrasena(Contrasena contrasena) {
+    public void setContrasena(IContrasena contrasena) {
         this.contrasena = contrasena;
     }
     

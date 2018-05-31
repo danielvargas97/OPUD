@@ -1,6 +1,6 @@
 package logica.objeto.registrador;
 
-import logica.objeto.condicionAbs.iCondicionable;
+import logica.objeto.condicion.iCondicionable;
 import logica.objeto.fabricaCondicion.FabricaCondicion;
 import logica.objeto.objetos.Objeto;
 

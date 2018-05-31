@@ -2,6 +2,8 @@ package logica.usuario.fachadaUser;
 
 import apiUsuario.IRegistro;
 import apiUsuario.IUsuario;
+import logica.usuario.contrasena.Contrasena;
+import logica.usuario.contrasenaInterface.IContrasena;
 import logica.usuario.registrador.IRegistroAdmin;
 import logica.usuario.registrador.IRegistroOPUD;
 import logica.usuario.registrador.IRegistroUsuario;
@@ -32,7 +34,8 @@ public class RegistroUsr implements IRegistro {
 
 	@Override
 	public void asignarContrasena(String contrasena) {
-		registro.asignarContrasena(contrasena);
+		IContrasena pass = new Contrasena(contrasena);
+		registro.asignarContrasena(pass);
 		
 	}
 

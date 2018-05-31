@@ -1,6 +1,5 @@
 package logica.objeto.condicion;
 
-import logica.objeto.condicionAbs.Condicion;
 
 public class Perdido extends Condicion{
 	

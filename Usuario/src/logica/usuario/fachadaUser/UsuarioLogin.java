@@ -14,19 +14,7 @@ public class UsuarioLogin implements ILogin {
 	private UsuarioDAO userDAO = new UsuarioDAO();
 	@Override
 	public boolean iniciarSesion(String user, String pass, int tipo) {
-		if(userDAO.login(user, pass, tipo)) {
-			if(tipo==1) {
-				
-			}
-			else if(tipo==2) {
-				
-			}
-			return true;
-		}
-		else {
-			
-			return false;
-		}
+		return userDAO.login(user, pass, tipo);
 	}
 	
 	

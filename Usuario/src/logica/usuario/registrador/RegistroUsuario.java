@@ -1,6 +1,6 @@
 package logica.usuario.registrador;
 
-import logica.usuario.contrasena.Contrasena;
+import logica.usuario.contrasenaInterface.IContrasena;
 import logica.usuario.usuario.Administrador;
 import logica.usuario.usuario.Usuario;
 import logica.usuario.usuario.UsuarioOPUD;
@@ -22,9 +22,9 @@ public class RegistroUsuario implements IRegistroUsuario {
 	}
 
 	@Override
-	public void asignarContrasena(String contrasena) {
-		nuevo.setContrasena(new Contrasena(contrasena));
-		//UsuarioDAO.cambiarContrasena(contrasena);
+	public void asignarContrasena(IContrasena contrasena) {
+		
+		nuevo.setContrasena(contrasena);
 	}
 
 
