@@ -22,8 +22,7 @@ public class RegistroUsuario implements IRegistroUsuario {
 	}
 
 	@Override
-	public void asignarContrasena(IContrasena contrasena) {
-		
+	public void asignarContrasena(IContrasena contrasena) {		
 		nuevo.setContrasena(contrasena);
 	}
 
@@ -32,7 +31,6 @@ public class RegistroUsuario implements IRegistroUsuario {
 
 	@Override
 	public Usuario getUsuario() {
-		// TODO Auto-generated method stub
 		return nuevo;
 	}
 

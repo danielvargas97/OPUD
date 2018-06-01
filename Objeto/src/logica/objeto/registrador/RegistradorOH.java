@@ -1,6 +1,6 @@
 package logica.objeto.registrador;
 
-import java.util.List;
+import java.util.Random;
 
 import logica.objeto.fabricaCondicion.FabricaHallado;
 import logica.objeto.objetos.Objeto;
@@ -8,31 +8,45 @@ import logica.objeto.objetos.Objeto;
 public class RegistradorOH extends RegistradorObjeto {
 
 	public RegistradorOH() {
+		super();
 		this.fabricaCond = new FabricaHallado();
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public boolean crearObjeto(String nombre, String descripcion, String estado) {
-		objeto = new Objeto(nombre, descripcion, estado);
-		return true;
-	}
-
-	@Override
-	public void asignarCategoria(int id) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void asignarCondicion() {
-		this.condicion = fabricaCond.crearCondicion();
-		
+		objeto.setCondicion(fabricaCond.crearCondicion());
 	}
+
 	@Override
-	public Objeto getObjeto() {
-		// TODO Auto-generated method stub
-		return objeto;
+	public void generarIdObjeto() {
+		String id = generarIDHeader()+generarIDBody();
+		
+		objeto.setIDObjeto(id);
+	}
+	
+	
+	private String generarIDHeader() {
+		String header = "H-";
+		return header;
+	}
+	
+	private String generarIDBody() {
+		Random r = new Random(System.currentTimeMillis());
+		String body = "";
+		
+		//Parte de ID con letras;
+		
+		for(int i=0;i<10;i++) {
+			char x = (char)(65+r.nextInt(26));
+			body = body+x;
+		}
+		
+		for(int i=0;i<8;i++) {
+			char x = (char)(48+r.nextInt(10));
+			body = body+x;
+		}		
+		
+		return body;
 	}
 
 }

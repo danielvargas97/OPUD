@@ -1,5 +1,6 @@
 package logica.objeto.registrador;
 
+import java.util.Random;
 
 import logica.objeto.fabricaCondicion.FabricaPerdido;
 import logica.objeto.objetos.Objeto;
@@ -7,32 +8,43 @@ import logica.objeto.objetos.Objeto;
 public class RegistradorOP extends RegistradorObjeto {
 
 	public RegistradorOP() {
+		super();
 		this.fabricaCond = new FabricaPerdido();
-		// TODO Auto-generated constructor stub
 	}
-
-	@Override
-	public boolean crearObjeto(String nombre, String descripcion, String estado) {
-		objeto = new Objeto(nombre, descripcion, estado);
-		objeto.asignarID();
-		return true;
-	}
-
-	@Override
-	public void asignarCategoria(int id) {
-		
-	}
-
 	@Override
 	public void asignarCondicion() {
-		this.condicion = fabricaCond.crearCondicion();
+		objeto.setCondicion(fabricaCond.crearCondicion());		
 	}
-
 	@Override
-	public Objeto getObjeto() {
-		// TODO Auto-generated method stub
-		return objeto;
+	public void generarIdObjeto() {
+		String id = generarIDHeader()+generarIDBody();		
+		objeto.setIDObjeto(id);
 	}
-
-
+	
+	
+	private String generarIDHeader() {
+		String header = "P-";
+		return header;
+	}
+	
+	private String generarIDBody() {
+		Random r = new Random(System.currentTimeMillis());
+		String body = "";
+		
+		//Parte de ID con letras;
+		
+		for(int i=0;i<10;i++) {
+			char x = (char)(65+r.nextInt(26));
+			body = body+x;
+		}
+		// Parte de ID con numeros
+		for(int i=0;i<8;i++) {
+			char x = (char)(48+r.nextInt(10));
+			body = body+x;
+		}		
+		
+		return body;
+	}
+	
+	
 }

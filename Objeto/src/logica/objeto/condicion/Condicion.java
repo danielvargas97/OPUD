@@ -1,7 +1,7 @@
 package logica.objeto.condicion;
 
 
-public abstract class Condicion implements iCondicionable {
+public abstract class Condicion implements ICondicionable {
 	
 	protected String nombre;
 	protected int idCondicion;

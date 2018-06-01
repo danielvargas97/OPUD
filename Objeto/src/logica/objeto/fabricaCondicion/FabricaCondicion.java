@@ -1,9 +1,9 @@
 package logica.objeto.fabricaCondicion;
 
-import logica.objeto.condicion.iCondicionable;
+import logica.objeto.condicion.ICondicionable;
 
 public abstract class FabricaCondicion {
-	public abstract iCondicionable crearCondicion();
+	public abstract ICondicionable crearCondicion();
 	
 	public FabricaCondicion() {}
 }

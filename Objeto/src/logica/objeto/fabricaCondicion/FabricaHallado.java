@@ -1,7 +1,7 @@
 package logica.objeto.fabricaCondicion;
 
 import logica.objeto.condicion.Hallado;
-import logica.objeto.condicion.iCondicionable;
+import logica.objeto.condicion.ICondicionable;
 
 public class FabricaHallado extends FabricaCondicion {
 
@@ -9,7 +9,7 @@ public class FabricaHallado extends FabricaCondicion {
 	}
 	
 	@Override
-	public iCondicionable crearCondicion() {
+	public ICondicionable crearCondicion() {
 		// TODO Auto-generated method stub
 		return new Hallado();
 	}

@@ -5,10 +5,8 @@
  */
 package logica.objeto.objetos;
 
-import java.util.Random;
-
 import apiObjeto.IObjeto;
-import logica.objeto.condicion.iCondicionable;
+import logica.objeto.condicion.ICondicionable;
 
 /**
  *
@@ -21,7 +19,7 @@ public class Objeto implements IObjeto{
     private String estado;
     
     private Categoria categoria;
-    private iCondicionable condicion;
+    private ICondicionable condicion;
     
     
     public Objeto(String nombre, String descripcion,String estado){
@@ -31,18 +29,12 @@ public class Objeto implements IObjeto{
         
     }    
 
-    public void asignarCategoria(Categoria cat){     
+	public void asignarCategoria(Categoria cat){     
     	this.categoria = cat;
     }
-    public void asignarCondicion(iCondicionable condicion) {
+    public void asignarCondicion(ICondicionable condicion) {
     	this.condicion = condicion;
-    }
-    
-    private void generarID(){
-        Random r = new Random(System.currentTimeMillis());
-        Long id =r.nextLong();        
-        this.idObjeto = Long.toString(id,10);
-    }
+    }   
 
     public String getIdObjeto() {
     	return this.idObjeto;
@@ -56,11 +48,6 @@ public class Objeto implements IObjeto{
     public String getEstado() {
     	return this.estado;
     }
-    
-    public void asignarID() {
-    	generarID();
-    }
-    
     public void setIDObjeto(String idObjeto) {
     	this.idObjeto = idObjeto;
     }
@@ -69,7 +56,7 @@ public class Objeto implements IObjeto{
     	this.categoria = cat;
     }
     
-    public void setCondicion(iCondicionable cond) {
+    public void setCondicion(ICondicionable cond) {
     	this.condicion = cond;
     }
     

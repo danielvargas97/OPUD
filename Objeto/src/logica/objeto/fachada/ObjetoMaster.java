@@ -8,11 +8,11 @@ import apiObjeto.IObjetoRegistro;
 import datos.objeto.objetos.CategoriaDAO;
 import datos.objeto.objetos.CondicionDAO;
 import datos.objeto.objetos.ObjetoDAO;
-import logica.objeto.fabricaCondicion.FabricaCondicion;
-import logica.objeto.fabricaCondicion.FabricaHallado;
-import logica.objeto.fabricaCondicion.FabricaPerdido;
-import logica.objeto.objetos.Objeto;
+import logica.objeto.cargador.CargadorObjeto;
+import logica.objeto.cargador.ICargadorObjeto;
+import logica.objeto.fabricafachada.ClienteFabrica;
 import logica.objeto.registrador.IRegistradorObjetos;
+import logica.objeto.registrador.RegistradorOH;
 import logica.objeto.registrador.RegistradorOP;
 
 public class ObjetoMaster implements IObjetoRegistro {
@@ -20,7 +20,6 @@ public class ObjetoMaster implements IObjetoRegistro {
 	private ObjetoDAO objDao = new ObjetoDAO();
 	private CategoriaDAO catDao = new CategoriaDAO();
 	private CondicionDAO condDao = new CondicionDAO();
-	private FabricaCondicion fabricaCond;
 	//private IObjeto objeto;
 	
 	public ObjetoMaster() {
@@ -37,10 +36,12 @@ public class ObjetoMaster implements IObjetoRegistro {
 	 */
 	public void registrarOP(String nombre, String descripcion, String estado, int categoria) {
 		creador = new RegistradorOP();
+		
 		creador.crearObjeto(nombre, descripcion, estado);
+		creador.generarIdObjeto();
 		creador.asignarCondicion();
 		creador.asignarCategoria(categoria);
-		objDao.registrarObjeto();
+		creador.registrar();
 	}
 	
 	/**
@@ -51,41 +52,26 @@ public class ObjetoMaster implements IObjetoRegistro {
 	 * @param categoria
 	 */
 	public void registrarOH(String nombre, String descripcion, String estado, int categoria) {
-		creador = new RegistradorOP();
+		creador = new RegistradorOH();
+		
 		creador.crearObjeto(nombre, descripcion, estado);
+		creador.generarIdObjeto();
 		creador.asignarCondicion();
 		creador.asignarCategoria(categoria);
-		objDao.registrarObjeto();
+		creador.registrar();
 		
 	}
 	
 	public IObjeto cargarObjeto(String idObjeto) {
-		Objeto cargado = objDao.cargarObjeto(idObjeto);		
-		generarFabrica(condDao.cargarIDCondicion(idObjeto));
-		cargado.asignarCondicion(fabricaCond.crearCondicion());		
-		IObjeto obj = cargado;
-		
-		return obj;/*objeto;*/
+		ICargadorObjeto cargador = new CargadorObjeto();
+		cargador.crearObjeto(idObjeto);
+		cargador.asociarCategoria();
+		cargador.asociarCondicion(new ClienteFabrica());		
+		return cargador.getObjeto();
 	}
 	
 	public List<String> verCategoria(){		
 		return catDao.cargarCategoria();
-	}
-	
-	
-	//public boolean crearObjeto(String nombre, String descripcion, String estado);
-	
-	private void generarFabrica(String tipo) {
-		switch(tipo) {
-			case "1":
-				fabricaCond = new FabricaPerdido();
-				break;
-			case "2":
-				fabricaCond = new FabricaHallado();
-				break;
-			default:
-				break;		
-		}		
 	}
 	
 }

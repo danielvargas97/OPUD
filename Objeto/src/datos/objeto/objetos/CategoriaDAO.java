@@ -17,7 +17,7 @@ public class CategoriaDAO {
 	}
 	
 	
-	public Categoria cargarCategoria(String idCat) {
+	public Categoria cargarCategoria(int idCat) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT IDCATEGORIA,NOMBRE,DESCRIPCION FROM CATEGORIA WHERE IDCATEGORIA=?");
 		ConexionOracle myConn = ConexionOracle.getInstance();
@@ -25,7 +25,7 @@ public class CategoriaDAO {
 			Connection conn = myConn.tomarConexion();
 			PreparedStatement ps = conn.prepareCall(sql.toString());
 			ResultSet rs = ps.executeQuery();
-			ps.setString(1, idCat);			
+			ps.setInt(1, idCat);			
 			Categoria cat = new Categoria();
 			while(rs.next()) {				
 				cat.setIdCategoria(Integer.parseInt(rs.getString(1)));

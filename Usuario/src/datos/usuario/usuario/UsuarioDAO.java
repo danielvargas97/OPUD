@@ -35,6 +35,7 @@ public class UsuarioDAO {
 			
 			ps.executeUpdate();
 			ps.close();
+			myConn.realizarCommit();
 		}
 		catch(SQLException ex) {
 			ex.printStackTrace();

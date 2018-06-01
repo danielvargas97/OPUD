@@ -32,6 +32,7 @@ public class UsrOpudDAO {
 			
 			ps.executeUpdate();
 			ps.close();
+			myConn.realizarCommit();
 		}
 		catch(SQLException ex) {
 			ex.printStackTrace();

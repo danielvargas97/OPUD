@@ -1,0 +1,2 @@
+insert into condicion values('1','Perdido');
+insert into condicion values('2','Hallado');
