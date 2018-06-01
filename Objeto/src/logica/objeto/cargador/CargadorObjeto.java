@@ -13,6 +13,13 @@ public class CargadorObjeto implements ICargadorObjeto  {
 	private CondicionDAO condDao;
 	private CategoriaDAO catDao;
 	
+	public CargadorObjeto() {		
+		this.objDao = new ObjetoDAO();
+		this.condDao = new CondicionDAO();
+		this.catDao = new CategoriaDAO();		
+	}
+	
+	
 	
 	@Override
 	public void crearObjeto(String id) {		
@@ -21,14 +28,15 @@ public class CargadorObjeto implements ICargadorObjeto  {
 
 	@Override
 	public void asociarCondicion(ClienteFabrica cliente) {
-		String idCond = condDao.cargarIDCondicion(o.getIdObjeto());
-		cliente.generarCondicion(idCond);		
+		int idCond = objDao.cargarIdCondicion(o.getIdObjeto());
+		cliente.generarCondicion(Integer.toString(idCond));		
 		o.setCondicion(cliente.crear());
 	}
 
 	@Override
 	public void asociarCategoria() {
-		o.setCategoria(catDao.cargarCategoria(o.getIDCategoria()));
+		int idCat = objDao.cargarIdCategoria(o.getIdObjeto());
+		o.setCategoria(catDao.cargarCategoria(idCat));
 	}
 
 	@Override

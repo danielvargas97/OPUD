@@ -49,6 +49,8 @@ public class ObjetoDAO {
 		try {
 			Connection conn = myConn.tomarConexion();
 			PreparedStatement ps = conn.prepareCall(sql.toString());
+			ps.setString(1, id);
+			
 			ResultSet rs = ps.executeQuery();
 			
 			String nombre="";
@@ -75,7 +77,61 @@ public class ObjetoDAO {
 		}				
 	}
 	
-	
+	public int cargarIdCategoria(String id) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT IDCATEGORIA FROM OBJETO WHERE IDOBJETO=?");
+		ConexionOracle myConn = ConexionOracle.getInstance();
+		try {
+			Connection conn = myConn.tomarConexion();
+			PreparedStatement ps = conn.prepareCall(sql.toString());
+			ps.setString(1, id);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			int idCat = 0;		
+			
+			while(rs.next()) {
+				idCat = rs.getInt(1);				
+			}
+			
+			return idCat;
+		}
+		catch(SQLException ex) {
+			ex.printStackTrace();
+			return -1;
+		}
+		finally {
+			myConn.soltarConexion();
+		}			
+	}
+	public int cargarIdCondicion(String id) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT IDCONDICION FROM OBJETO WHERE IDOBJETO=?");
+		ConexionOracle myConn = ConexionOracle.getInstance();
+		try {
+			Connection conn = myConn.tomarConexion();
+			PreparedStatement ps = conn.prepareCall(sql.toString());
+			ps.setString(1, id);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			int idCond = 0;		
+			
+			while(rs.next()) {
+				idCond = rs.getInt(1);				
+			}
+			
+			return idCond;
+		}
+		catch(SQLException ex) {
+			ex.printStackTrace();
+			return -1;
+		}
+		finally {
+			myConn.soltarConexion();
+		}		
+	}
+
 	public void setObjeto(Objeto o) {
 		this.o = o;
 	}	

@@ -24,8 +24,9 @@ public class CategoriaDAO {
 		try {
 			Connection conn = myConn.tomarConexion();
 			PreparedStatement ps = conn.prepareCall(sql.toString());
+			ps.setInt(1, idCat);
 			ResultSet rs = ps.executeQuery();
-			ps.setInt(1, idCat);			
+						
 			Categoria cat = new Categoria();
 			while(rs.next()) {				
 				cat.setIdCategoria(Integer.parseInt(rs.getString(1)));

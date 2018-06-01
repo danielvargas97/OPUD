@@ -20,6 +20,7 @@ public class CondicionDAO {
 		try {
 			Connection conn = myConn.tomarConexion();
 			PreparedStatement ps = conn.prepareCall(sql.toString());
+			ps.setString(1, idObjeto);
 			ResultSet rs = ps.executeQuery();
 			
 			String idCondicion="";

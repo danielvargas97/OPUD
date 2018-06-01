@@ -36,12 +36,7 @@ public class ObjetoMaster implements IObjetoRegistro {
 	 */
 	public void registrarOP(String nombre, String descripcion, String estado, int categoria) {
 		creador = new RegistradorOP();
-		
-		creador.crearObjeto(nombre, descripcion, estado);
-		creador.generarIdObjeto();
-		creador.asignarCondicion();
-		creador.asignarCategoria(categoria);
-		creador.registrar();
+		registrar(nombre,descripcion,estado,categoria);
 	}
 	
 	/**
@@ -53,12 +48,7 @@ public class ObjetoMaster implements IObjetoRegistro {
 	 */
 	public void registrarOH(String nombre, String descripcion, String estado, int categoria) {
 		creador = new RegistradorOH();
-		
-		creador.crearObjeto(nombre, descripcion, estado);
-		creador.generarIdObjeto();
-		creador.asignarCondicion();
-		creador.asignarCategoria(categoria);
-		creador.registrar();
+		registrar(nombre,descripcion,estado,categoria);
 		
 	}
 	
@@ -72,6 +62,15 @@ public class ObjetoMaster implements IObjetoRegistro {
 	
 	public List<String> verCategoria(){		
 		return catDao.cargarCategoria();
+	}
+	
+	
+	private void registrar(String nombre, String descripcion, String estado, int categoria) {
+		creador.crearObjeto(nombre, descripcion, estado);
+		creador.generarIdObjeto();
+		creador.asignarCondicion();
+		creador.asignarCategoria(categoria);
+		creador.registrar();
 	}
 	
 }
