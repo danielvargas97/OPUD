@@ -52,20 +52,17 @@ public class BandejaEntrada implements IBandejaEntrada {
 
 	@Override
 	public List<IMensaje> verMensajesEntrantes() {
-		// TODO Auto-generated method stub
 		return this.getBuzonEntrada();
 	}
 
 	@Override
 	public List<IMensaje> verMensajesEnviados() {
-		// TODO Auto-generated method stub
 		return this.getBuzonSalida();
 	}
 
 	@Override
 	public void enviarMensaje(IMensaje mensaje) {
 		buzonSalida.add(0, mensaje);
-		//
 	}
 
 	@Override
@@ -74,15 +71,26 @@ public class BandejaEntrada implements IBandejaEntrada {
 	}
 
 	@Override
-	public IMensaje verMensajeEntrante(int index) {
-		// TODO Auto-generated method stub
-		return this.getBuzonEntrada().get(index);
+	public IMensaje verMensajeEntrante(int index) {		
+		try {
+			return buzonEntrada.get(index);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return null;			
+		}
 	}
 
 	@Override
 	public IMensaje verMensajeSalida(int index) {
+		try {
+			return buzonSalida.get(index);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
 		
-		return this.getBuzonSalida().get(index);
 	}
     
 }

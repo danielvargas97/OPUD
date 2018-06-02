@@ -84,7 +84,8 @@ public class UsuarioDAO {
 		StringBuilder sql = new StringBuilder();
 		ConexionOracle myConn = ConexionOracle.getInstance();
 		try {
-			sql.append("SELECT DOCIDENTIDAD,CONTRASENA FROM USUARIO,CONTRASENA WHERE USUARIO.DOCIDENTIDAD=? AND CONTRASENA.CONTRASENA=? ");
+			sql.append("SELECT DOCIDENTIDAD,CONTRASENA FROM USUARIO,CONTRASENA WHERE");
+			sql.append(" USUARIO.DOCIDENTIDAD=? AND CONTRASENA.CONTRASENA=? ");
 			sql.append("AND USUARIO.IDUSUARIO=CONTRASENA.IDUSUARIO");
 			
 			String docBD="";

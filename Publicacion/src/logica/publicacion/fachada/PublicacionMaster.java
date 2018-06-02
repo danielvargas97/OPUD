@@ -29,8 +29,7 @@ public class PublicacionMaster implements IBuscador,ICreadorPublicacion,INotific
 	@Override
 	public ArrayList<IPublicacion> historial(String idUsuario, String fechaInicio, String fechaFinal,
 			int tipoPublicacion) {
-		// TODO Auto-generated method stub
-		//publDAO.cargarPublicacion(idUsuario, idPublicacion);
+		
 		return null;
 	}
 

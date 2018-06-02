@@ -2,7 +2,6 @@ package logica.objeto.cargador;
 
 import apiObjeto.IObjeto;
 import datos.objeto.objetos.CategoriaDAO;
-import datos.objeto.objetos.CondicionDAO;
 import datos.objeto.objetos.ObjetoDAO;
 import logica.objeto.fabricafachada.ClienteFabrica;
 import logica.objeto.objetos.Objeto;
@@ -10,16 +9,12 @@ import logica.objeto.objetos.Objeto;
 public class CargadorObjeto implements ICargadorObjeto  {
 	private Objeto o;
 	private ObjetoDAO objDao;
-	private CondicionDAO condDao;
 	private CategoriaDAO catDao;
 	
 	public CargadorObjeto() {		
-		this.objDao = new ObjetoDAO();
-		this.condDao = new CondicionDAO();
+		this.objDao = new ObjetoDAO();		
 		this.catDao = new CategoriaDAO();		
 	}
-	
-	
 	
 	@Override
 	public void crearObjeto(String id) {		

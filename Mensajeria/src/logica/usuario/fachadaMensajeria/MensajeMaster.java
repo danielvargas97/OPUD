@@ -1,6 +1,5 @@
 package logica.usuario.fachadaMensajeria;
 
-import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
@@ -31,13 +30,8 @@ public class MensajeMaster implements IMensajeria {
 	
 	public void enviarMensaje(IMensaje mensaje) {
 		bandeja.enviarMensaje(mensajeActual);
-		mdao.setMensaje((Mensaje)bandeja.verMensajeEntrante(0));
-		try {
-			mdao.insertar();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		mdao.setMensaje((Mensaje)bandeja.verMensajeSalida(0));
+		mdao.insertar();
 	}
 	
 	public void eliminarMensajeEntrante(int index) {
@@ -45,8 +39,9 @@ public class MensajeMaster implements IMensajeria {
 	}
 	
 	public IMensaje verMensajeEntrante(int index) {
-		return bandeja.verMensajeEntrante(index);
-		
+		IMensaje aux = bandeja.verMensajeEntrante(index);
+		mdao.marcarLeido(aux.getIdMensaje());
+		return aux; 		
 	}
 	
 	public IMensaje verMensajeSalida(int index) {
@@ -70,9 +65,5 @@ public class MensajeMaster implements IMensajeria {
 		mdao = new MensajeriaDAO();
 		mdao.cargarCorreo(id);
 		bandeja = mdao.getBandeja();
-	}
-	
-	
-	
-	//private void cargar
+	}	
 }

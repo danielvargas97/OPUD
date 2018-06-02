@@ -6,8 +6,7 @@ import java.util.List;
 import apiObjeto.IObjeto;
 import apiObjeto.IObjetoRegistro;
 import datos.objeto.objetos.CategoriaDAO;
-import datos.objeto.objetos.CondicionDAO;
-import datos.objeto.objetos.ObjetoDAO;
+
 import logica.objeto.cargador.CargadorObjeto;
 import logica.objeto.cargador.ICargadorObjeto;
 import logica.objeto.fabricafachada.ClienteFabrica;
@@ -17,9 +16,9 @@ import logica.objeto.registrador.RegistradorOP;
 
 public class ObjetoMaster implements IObjetoRegistro {
 	private IRegistradorObjetos creador;
-	private ObjetoDAO objDao = new ObjetoDAO();
+
 	private CategoriaDAO catDao = new CategoriaDAO();
-	private CondicionDAO condDao = new CondicionDAO();
+
 	//private IObjeto objeto;
 	
 	public ObjetoMaster() {

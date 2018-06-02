@@ -1,7 +1,6 @@
 package logica.objeto.cargador;
 
 import apiObjeto.IObjeto;
-import logica.objeto.condicion.ICondicionable;
 import logica.objeto.fabricafachada.ClienteFabrica;
 
 public interface ICargadorObjeto {

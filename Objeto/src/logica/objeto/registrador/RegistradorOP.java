@@ -3,7 +3,6 @@ package logica.objeto.registrador;
 import java.util.Random;
 
 import logica.objeto.fabricaCondicion.FabricaPerdido;
-import logica.objeto.objetos.Objeto;
 
 public class RegistradorOP extends RegistradorObjeto {
 

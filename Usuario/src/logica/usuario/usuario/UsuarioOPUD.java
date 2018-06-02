@@ -68,6 +68,11 @@ public class UsuarioOPUD {
 	public Usuario getUsuario() {
 		return usuario;
 	}
+
+
+	public void setCalificacion(iCalificacion calificacion) {
+		this.calificacion = calificacion;
+	}
     
     
     

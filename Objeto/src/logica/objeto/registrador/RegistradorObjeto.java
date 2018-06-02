@@ -29,15 +29,17 @@ public abstract class RegistradorObjeto implements IRegistradorObjetos{
 	}
 	
 	@Override
+	public void registrar() {
+		objetoDAO.setObjeto(objeto);
+		objetoDAO.registrarObjeto();	
+	}
+	
+	
+	@Override
 	public Objeto getObjeto() {
 		return objeto;
 	}
 	
-	@Override
-	public void registrar() {
-		objetoDAO.setObjeto(objeto);
-		objetoDAO.registrarObjeto();
-		
-	}
+
 	
 }

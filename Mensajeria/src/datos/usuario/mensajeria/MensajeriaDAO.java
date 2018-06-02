@@ -15,30 +15,30 @@ public class MensajeriaDAO {
 	private Mensaje m;
 	
 	
-	public MensajeriaDAO() {
-		
+	public MensajeriaDAO() {		
 		bandeja = new BandejaEntrada();
 	}
 	
-	public void insertar() throws SQLException {
+	public void insertar(){
 		StringBuilder sql = new StringBuilder();
 		sql.append("INSERT INTO MENSAJE VALUES (?,?,?,?,?,?,?)");
 		ConexionOracle myConn = ConexionOracle.getInstance();
 		try {			
 			Connection conn = myConn.tomarConexion();
 			PreparedStatement ps = conn.prepareCall(sql.toString());
-			ps.setString(1, "");
+			ps.setString(1, m.getIdMensaje());
 			ps.setString(2, m.getOrigen());
 			ps.setString(3, m.getDestino());
 			ps.setString(4, m.getAsunto());
 			ps.setString(5, m.getMensaje());
-			ps.setDate(6, (Date)m.getFecha());
+			long date = m.getFecha().getTime();
+			ps.setDate(6, new Date(date));
 			ps.setInt(7, 0);
 			ps.executeUpdate();
 			ps.close();
 			myConn.realizarCommit();
 		}
-		catch(SQLException ex) {
+		catch(Exception ex) {
 			ex.printStackTrace();
 		}
 		finally {
@@ -50,7 +50,7 @@ public class MensajeriaDAO {
 	private void cargarCorreoEntrante(String id) {
 		StringBuilder sql = new StringBuilder();
 		ConexionOracle myConn = ConexionOracle.getInstance();		
-		sql.append("SELECT * FROM MENSAJE WHERE IDDESTINO = ?");
+		sql.append("SELECT * FROM MENSAJE WHERE IDDESTINO = ? AND LEIDO=0");
 
 		try {
 			Connection conn = myConn.tomarConexion();
@@ -65,7 +65,8 @@ public class MensajeriaDAO {
 				m.setDestino(rs.getString(3));
 				m.setAsunto(rs.getString(4));
 				m.setMensaje(rs.getString(5));
-				m.setFecha(rs.getDate(6));
+				long date = rs.getDate(6).getTime();
+				m.setFecha( new java.util.Date(date));
 				m.setLeido(rs.getInt(7));
 				bandeja.getBuzonEntrada().add(m);
 			}		
@@ -116,6 +117,31 @@ public class MensajeriaDAO {
 		cargarCorreoEntrante(id);
 		cargarCorreoSaliente(id);
 	}
+	
+	public void marcarLeido(String idMensaje) {
+		StringBuilder sql = new StringBuilder();
+		ConexionOracle myConn = ConexionOracle.getInstance();
+		sql.append("UPDATE MENSAJE SET LEIDO = ?  WHERE IDMENSAJE = ?");
+
+		try {
+			Connection conn = myConn.tomarConexion();
+			PreparedStatement ps = conn.prepareStatement(sql.toString());
+			ps.setInt(1, 1);
+			ps.setString(2, idMensaje);
+			
+			ps.executeUpdate();
+			ps.close();
+			myConn.realizarCommit();
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		finally {
+			myConn.soltarConexion();
+		}
+
+	}
+	
 	
 	
 	public void setBandeja(BandejaEntrada bandeja) {

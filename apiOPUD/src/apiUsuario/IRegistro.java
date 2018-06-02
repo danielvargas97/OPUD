@@ -8,4 +8,9 @@ public interface IRegistro {
 	public boolean registrarUsuarioOPUD(String codigo, String rolUniversidad);
 	public boolean registrarAdmin(String nickname);
 	public IUsuario cargarUsuario(String idUser);
+	
+
+	
+	
+	
 }

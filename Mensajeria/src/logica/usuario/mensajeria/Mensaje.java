@@ -42,9 +42,14 @@ public class Mensaje implements IMensaje {
     	Random r = new Random(System.currentTimeMillis());
     	String id = "";
     	
-    	for(int i=0;i<15;i++) {
-    		id = id +(char)(65+r.nextInt(91));
+    	for(int i=0;i<7;i++) {
+    		id = id +(char)(65+r.nextInt(26));
     	}
+    	for(int i=0;i<8;i++) {
+    		id = id +(char)(48+r.nextInt(10));
+    	}
+    	
+    	
     	
     	this.idMensaje = id;
     	
