@@ -11,120 +11,20 @@ import apiPublicacion.INotificable;
 import apiPublicacion.IPublicacion;
 import apiUsuario.IUsuario;
 import datos.publicacion.publicaciones.PublicacionDAO;
+import logica.publicacion.fabricaPublicaciones.FabricaPublicador;
 import logica.publicacion.publicaciones.Publicador;
 
-public class PublicacionMaster implements IBuscador,ICreadorPublicacion,INotificable,IHistorial {
+public class PublicacionMaster {
 	private PublicacionDAO publDAO = new PublicacionDAO();
 	private Publicador publicacion;
 	private IPublicacion publicacionCargada;
 	private int tipo;
+	private FabricaPublicador fabrica;
 	//private Publicador publicacion;
 	
 	
 	public PublicacionMaster(int tipo) {
 		this.tipo = tipo;
-	}
-
-
-	@Override
-	public ArrayList<IPublicacion> historial(String idUsuario, String fechaInicio, String fechaFinal,
-			int tipoPublicacion) {
-		
-		return null;
-	}
-
-
-	@Override
-	public void cambiarEstadoNotificacion(boolean estado) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public List<IPublicacion> verResultadosNotificacion(String idPublicacion) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public void crearPublicacion(int tipo) {
-		publicacion = new Publicador(tipo); 
-		
-	}
-
-
-	@Override
-	public void cambiarEstadoPublicacion(int activo) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void publicar() {
-		publDAO.insertarPublicacion();
-		
-	}
-
-
-	@Override
-	public void cargarPublicacion(String idUsuario, String idPublicacion) {
-		publicacionCargada = publDAO.cargarPublicacion(idUsuario, idPublicacion,1);
-		
-	}
-
-
-	@Override
-	public void registrarObjetoHallado(String nombre, String descripcion, String estado, int idCategoria) {
-		publicacion.setNombre(nombre);
-		publDAO.setPublicacion(publicacion);	
-		publicar();
-		
-	}
-
-
-	@Override
-	public void registrarObjetoPerdido(String nombre, String descripcion, String estado, int idCategoria) {
-		publicacion.setNombre(nombre);
-		publDAO.setPublicacion(publicacion);
-		publicar();		
-	}
-
-
-	@Override
-	public ArrayList<IPublicacion> buscarPublicacion(String textoBusqueda, int tipoPublicacion) {
-		// TODO Auto-generated method stub
-		return publDAO.buscarPublicacion(textoBusqueda, tipoPublicacion);
-	}
-
-
-	@Override
-	public ArrayList<IPublicacion> verMisPublicaciones(String idUser, int tipo) {
-		return publDAO.cargarPublicaciones(idUser, tipo);
-	}
-
-
-	@Override
-	public IPublicacion cargarPublicacion(String idUser, String idPublicacion, int tipo) {		
-		return publDAO.cargarPublicacion(idUser, idPublicacion,tipo);
-	}
-
-
-	@Override
-	public void asignarUsuario(IUsuario user) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void asignarObjeto(IObjeto objeto) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
+	}		
 	
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package logica.publicacion.publicaciones;
 
 import java.util.Date;
@@ -14,7 +9,7 @@ import apiPublicacion.IPublicacion;
  *
  * @author PC
  */
-public class Publicador implements IPublicacion{
+public abstract class Publicador implements IPublicacion{
     protected String nombre;
     protected String idPublicacion;
     protected Date fechaPublicacion;
@@ -29,14 +24,27 @@ public class Publicador implements IPublicacion{
     public Publicador(int tipo) {
     	this.tipoPublicacion = tipo;
     }
+        
+    public abstract void generarId();
     
-    
-    protected void generarIdBase() {
-    	/*Random r = new Random(System.currentTimeMillis());
-    	 r.
-    	r.nextInt(5);*/
-    	
-    }
+	protected String generarIdBody() {
+		Random r = new Random(System.currentTimeMillis());
+		String body = "";
+		
+		//Parte de ID con letras;
+		
+		for(int i=0;i<10;i++) {
+			char x = (char)(65+r.nextInt(26));
+			body = body+x;
+		}
+		
+		for(int i=0;i<8;i++) {
+			char x = (char)(48+r.nextInt(10));
+			body = body+x;
+		}		
+		
+		return body;
+	}
     
     public Date generarFechaPub() {
     	return fechaPublicacion;
