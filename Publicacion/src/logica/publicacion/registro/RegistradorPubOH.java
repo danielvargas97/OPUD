@@ -1,11 +1,13 @@
 package logica.publicacion.registro;
 
+import logica.publicacion.fabricaPublicaciones.FabricaPublHallado;
 import logica.publicacion.publicaciones.PublicadorHallado;
 
 public class RegistradorPubOH extends RegistradorPub {
 
 	public RegistradorPubOH() {
-		
+		fabrica = new FabricaPublHallado();
+		publicacion = fabrica.crearPublicador();
 	}
 	
 	@Override

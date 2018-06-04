@@ -1,8 +1,10 @@
 package logica.publicacion.registro;
 
+import java.util.Date;
 import java.util.Random;
 
 import datos.publicacion.publicaciones.PublicacionDAO;
+import logica.publicacion.fabricaPublicaciones.FabricaPublicador;
 import logica.publicacion.publicaciones.Publicador;
 import logica.utils.utilidades.FechaString;
 
@@ -12,6 +14,7 @@ public abstract class RegistradorPub implements IRegistroPublicador {
 	protected String idObjeto;
 	protected Publicador publicacion;
 	protected PublicacionDAO publDao;
+	protected FabricaPublicador fabrica;
 	
 	public RegistradorPub() {
 		this.publDao = new PublicacionDAO();
@@ -35,6 +38,7 @@ public abstract class RegistradorPub implements IRegistroPublicador {
 	@Override
 	public void registrarFecha(String dia, String mes, String anho) {
 		publicacion.setFechaCondicion(FechaString.parseDate(dia, mes, anho));
+		publicacion.setFechaPublicacion(new Date());
 	}
 
 	@Override

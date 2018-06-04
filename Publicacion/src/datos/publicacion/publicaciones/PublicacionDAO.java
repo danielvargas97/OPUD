@@ -43,6 +43,8 @@ public class PublicacionDAO {
 			ps.setInt(7, publicacion.getTipoPublicacion());
 			ps.setInt(8, publicacion.getActivo());
 			
+			ps.executeUpdate();
+			ps.close();			
 			myConn.realizarCommit();
 		}
 		catch(SQLException ex) {

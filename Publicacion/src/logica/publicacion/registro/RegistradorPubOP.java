@@ -1,11 +1,13 @@
 package logica.publicacion.registro;
 
+import logica.publicacion.fabricaPublicaciones.FabricaPublPerdido;
 import logica.publicacion.publicaciones.PublicadorPerdido;
 
 public class RegistradorPubOP extends RegistradorPub {
 	
 	public RegistradorPubOP() {
-	 
+		fabrica = new FabricaPublPerdido();
+		publicacion = fabrica.crearPublicador();
 	}
 	
 	@Override

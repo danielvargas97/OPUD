@@ -5,9 +5,9 @@
 	<classpathentry kind="lib" path="C:/Users/PC/Documents/FIS/OPUD/Central/utilidades/apiMaster.jar"/>
 	<classpathentry kind="lib" path="C:/Users/PC/Documents/FIS/OPUD/Central/utilidades/DatosOPUD.jar"/>
 	<classpathentry kind="lib" path="C:/Users/PC/Documents/FIS/OPUD/Central/utilidades/ojdbc6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/PC/Documents/FIS/OPUD/Central/componentes/Mensajeria.jar"/>
-	<classpathentry kind="lib" path="C:/Users/PC/Documents/FIS/OPUD/Central/componentes/Objeto.jar"/>
-	<classpathentry kind="lib" path="C:/Users/PC/Documents/FIS/OPUD/Central/componentes/Publicacion.jar"/>
-	<classpathentry kind="lib" path="C:/Users/PC/Documents/FIS/OPUD/Central/componentes/Usuario.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Documents/FIS/OPUD/API/Componentes/Mensajeria.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Documents/FIS/OPUD/API/Componentes/Objeto.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Documents/FIS/OPUD/API/Componentes/Usuario.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Documents/FIS/OPUD/API/Componentes/Publicacion.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

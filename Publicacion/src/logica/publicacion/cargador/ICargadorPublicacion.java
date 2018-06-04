@@ -7,5 +7,4 @@ public interface ICargadorPublicacion {
 	public void crearPublicacion();
 	public IPublicacion getPublicacion(); 
 	
-	
 }

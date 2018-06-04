@@ -8,12 +8,19 @@ import apiObjeto.IObjetoRegistro;
 import apiPublicacion.IPublicacion;
 import apiPublicacion.IPublicacionAdmin;
 import apiUsuario.IUsuario;
+import apiUsuario.IUsuarioAdmin;
 import datos.publicacion.publicaciones.PublicacionDAO;
+import logica.publicacion.buscador.BuscadorOH;
+import logica.publicacion.buscador.BuscadorOP;
+import logica.publicacion.buscador.IBuscador;
+import logica.publicacion.cargador.IPublicacionInfo;
+import logica.publicacion.cargador.PublicacionUtil;
+import logica.publicacion.fabricaPublicaciones.FabricaPublHallado;
+import logica.publicacion.fabricaPublicaciones.FabricaPublPerdido;
 import logica.publicacion.fabricaPublicaciones.FabricaPublicador;
 import logica.publicacion.historial.Historial;
 import logica.publicacion.historial.HistorialH;
 import logica.publicacion.historial.HistorialP;
-import logica.publicacion.publicaciones.Publicador;
 import logica.publicacion.registro.IRegistroPublicador;
 import logica.publicacion.registro.RegistradorPubOH;
 import logica.publicacion.registro.RegistradorPubOP;
@@ -25,8 +32,10 @@ public class PublicacionMaster implements IPublicacionAdmin {
 	private int tipo;
 	private IObjetoRegistro objRegister;
 	private IObjeto objeto;
+	private IUsuarioAdmin adm;
+	private IPublicacionInfo info;
 	
-	//private IUsuario user;
+	
 	private IRegistroPublicador registroPub;
 	
 	
@@ -41,6 +50,11 @@ public class PublicacionMaster implements IPublicacionAdmin {
 	@Override
 	public void asignarUsuario(IUsuario user) {
 		registroPub.asignarIdUser(user.getIdUser());		
+	}
+	
+	@Override
+	public void asignarRegistroObjeto(IObjetoRegistro reg) {	
+		this.objRegister = reg;
 	}
 	
 	@Override
@@ -67,6 +81,7 @@ public class PublicacionMaster implements IPublicacionAdmin {
 	}
 	@Override
 	public void publicar() {
+		registroPub.generarId();
 		registroPub.registrar();
 	}
 	
@@ -87,7 +102,18 @@ public class PublicacionMaster implements IPublicacionAdmin {
 	
 	@Override
 	public ArrayList<IPublicacion> buscarPublicacion(String textoBusqueda, int tipoPublicacion) {
-		return null;
+		IBuscador buscador;
+		if(tipoPublicacion == 1){
+			buscador = new BuscadorOP();
+		  	publDAO.setFabrica(new FabricaPublPerdido());
+		}
+		else{
+			buscador = new BuscadorOH();
+		  	publDAO.setFabrica(new FabricaPublHallado());
+		}
+		buscador.setDao(publDAO);
+		buscador.setTextoBusqueda(textoBusqueda);
+		return buscador.getResultados(); 
 	}
 	
 	@Override
@@ -95,9 +121,11 @@ public class PublicacionMaster implements IPublicacionAdmin {
 		Historial h;
 		if(tipoPublicacion == 1) {
 			h = new HistorialP();
+			publDAO.setFabrica(new FabricaPublPerdido());
 		}
 		else {
 			h = new HistorialH();
+			publDAO.setFabrica(new FabricaPublHallado());
 		}
 		
 		h.setIdUsuario(idUsuario);
@@ -115,19 +143,30 @@ public class PublicacionMaster implements IPublicacionAdmin {
 		return null;
 	}
 
-	public void setObjRegister(IObjetoRegistro objRegister) {
-		this.objRegister = objRegister;
-	}
-	
 	private void crearRegistrador(int tipo) {
 		if(tipo==1)
 			registroPub = new RegistradorPubOP();
 		else
 			registroPub = new RegistradorPubOH();
 	}
-
-	
-	
+	@Override
+	public IUsuario cargarDatosUsuario(String idPublicacion) {
+		getInfo();
+		return adm.cargarUsuario(info.getIdUsuario(idPublicacion));
+	}
+	@Override
+	public IObjeto cargarDatosObjeto(String idPublicacion) {
+		getInfo();
+		return objRegister.cargarObjeto(info.getIdObjeto(idPublicacion));
+	}
+	@Override
+	public void asignarUsuarioUtil(IUsuarioAdmin usrAdm) {
+		this.adm = usrAdm;
+	}
 		
+	private void getInfo() {
+		info = new PublicacionUtil(publDAO);
+	}
+	
 }
 
