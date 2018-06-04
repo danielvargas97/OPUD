@@ -71,5 +71,11 @@ public class ObjetoMaster implements IObjetoRegistro {
 		creador.asignarCategoria(categoria);
 		creador.registrar();
 	}
+
+
+	@Override
+	public String verID() {
+		return creador.verId();
+	}
 	
 }

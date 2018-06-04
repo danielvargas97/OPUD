@@ -1,5 +1,6 @@
 package logica.cargador.usuario;
 
+import apiUsuario.IUsuario;
 import logica.usuario.calificador.iCalificable;
 
 public interface ICargadorUsrOPUD {
@@ -7,5 +8,5 @@ public interface ICargadorUsrOPUD {
 	public void setCalificador(iCalificable calificador);
 	public void cargarUsuarioOpud();
 		
-	//public IUsuario getUsuarioOPUD();
+	public IUsuario getUsuarioOPUD();
 }

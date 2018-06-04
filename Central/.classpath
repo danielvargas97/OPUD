@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Documents/FIS/OPUD/Central/utilidades/apiMaster.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Documents/FIS/OPUD/Central/utilidades/DatosOPUD.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Documents/FIS/OPUD/Central/utilidades/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Documents/FIS/OPUD/Central/componentes/Mensajeria.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Documents/FIS/OPUD/Central/componentes/Objeto.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Documents/FIS/OPUD/Central/componentes/Publicacion.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Documents/FIS/OPUD/Central/componentes/Usuario.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

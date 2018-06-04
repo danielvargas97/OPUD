@@ -9,6 +9,7 @@ public abstract class RegistradorObjeto implements IRegistradorObjetos{
 	protected Objeto objeto;
 	protected ObjetoDAO objetoDAO;
 	protected FabricaCondicion fabricaCond;
+	protected String lastID;
 	
 	public RegistradorObjeto() {
 		objetoDAO = new ObjetoDAO();
@@ -39,6 +40,11 @@ public abstract class RegistradorObjeto implements IRegistradorObjetos{
 	public Objeto getObjeto() {
 		return objeto;
 	}
+	
+	public String verId() {
+		return lastID;		
+	}
+	
 	
 
 	

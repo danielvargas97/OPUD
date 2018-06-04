@@ -19,7 +19,7 @@ public class RegistradorOH extends RegistradorObjeto {
 	@Override
 	public void generarIdObjeto() {
 		String id = generarIDHeader()+generarIDBody();
-		
+		lastID = id;
 		objeto.setIDObjeto(id);
 	}
 	

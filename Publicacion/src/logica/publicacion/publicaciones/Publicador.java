@@ -1,9 +1,9 @@
 package logica.publicacion.publicaciones;
 
 import java.util.Date;
-import java.util.Random;
 
 import apiPublicacion.IPublicacion;
+import logica.utils.utilidades.FechaString;
 
 /**
  *
@@ -24,27 +24,6 @@ public abstract class Publicador implements IPublicacion{
     public Publicador(int tipo) {
     	this.tipoPublicacion = tipo;
     }
-        
-    public abstract void generarId();
-    
-	protected String generarIdBody() {
-		Random r = new Random(System.currentTimeMillis());
-		String body = "";
-		
-		//Parte de ID con letras;
-		
-		for(int i=0;i<10;i++) {
-			char x = (char)(65+r.nextInt(26));
-			body = body+x;
-		}
-		
-		for(int i=0;i<8;i++) {
-			char x = (char)(48+r.nextInt(10));
-			body = body+x;
-		}		
-		
-		return body;
-	}
     
     public Date generarFechaPub() {
     	return fechaPublicacion;

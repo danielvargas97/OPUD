@@ -1,34 +1,38 @@
 package logica.usuario.fachadaUser;
 
-import apiUsuario.IRegistro;
 import apiUsuario.IUsuario;
+import apiUsuario.IUsuarioAdmin;
+import logica.cargador.usuario.CargadorAdmin;
+import logica.cargador.usuario.CargadorUser;
+import logica.cargador.usuario.CargadorUsrOPUD;
+import logica.cargador.usuario.ICargadorAdmin;
+import logica.cargador.usuario.ICargadorUser;
+import logica.cargador.usuario.ICargadorUsrOPUD;
 import logica.usuario.contrasena.Contrasena;
 import logica.usuario.contrasenaInterface.IContrasena;
 import logica.usuario.registrador.IRegistroAdmin;
 import logica.usuario.registrador.IRegistroOPUD;
 import logica.usuario.registrador.IRegistroUsuario;
+import logica.usuario.registrador.RegistroAdmin;
 import logica.usuario.registrador.RegistroUsuario;
+import logica.usuario.registrador.RegistroUsuarioOPUD;
 
 
-public class RegistroUsr implements IRegistro {
+public class RegistroUsr implements IUsuarioAdmin {
 	private IRegistroUsuario registro;
 	private IRegistroAdmin regAdmin;
 	private IRegistroOPUD regOpud;
+	private ICargadorUser cargUser; 
 	
-	public RegistroUsr(IRegistroUsuario usr,IRegistroOPUD opud) {
-		this.registro = usr;
-		this.regOpud = opud;
+	public RegistroUsr() {
+		this.registro = new RegistroUsuario();
+		this.regAdmin = new RegistroAdmin();
+		this.regOpud = new RegistroUsuarioOPUD();
 	}
-	
-	public RegistroUsr(IRegistroUsuario usr,IRegistroAdmin admin) {
-		this.registro = usr;
-		this.regAdmin = admin;
-	}
-	
 	
 	@Override
-	public boolean registrar(String nombre, String apellido, String correo, String docIdentidad) {
-		registro.registrar(nombre, apellido, correo, docIdentidad);
+	public boolean asignarDatosUsuario(String nombre, String apellido, String correo, String docIdentidad,String tipoDoc) {
+		registro.crearUsuario(nombre, apellido, correo, docIdentidad,tipoDoc);
 		return true;
 	}
 
@@ -39,6 +43,11 @@ public class RegistroUsr implements IRegistro {
 		
 	}
 
+	@Override
+	public void registrarUsuario() {
+		registro.registrarUsuario();
+	}
+	
 	@Override
 	public boolean registrarUsuarioOPUD(String codigo, String rolUniversidad) {		
 		regOpud.asignarUsuario(registro.getUsuario());
@@ -56,8 +65,35 @@ public class RegistroUsr implements IRegistro {
 
 	@Override
 	public IUsuario cargarUsuario(String idUser) {
-		return null;
+		precargarUsuario(idUser);
+		ICargadorUsrOPUD usrCargado = new CargadorUsrOPUD();
+		usrCargado.cargarUsuarioBase(cargUser);
+		usrCargado.cargarUsuarioOpud();
+		return usrCargado.getUsuarioOPUD();
+		
 	}
 	
+	@Override
+	public IUsuario cargarAdmin(String idUser) {
+		precargarUsuario(idUser);
+		ICargadorAdmin usrCargado = new CargadorAdmin();
+		usrCargado.cargarUsuarioBase(cargUser);
+		usrCargado.cargarAdmin();
+		return usrCargado.getAdmin();
+	}
+	
+	@Override
+	public boolean iniciarSesion(String user, String pass, int tipo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	private void precargarUsuario(String idUser) {
+		cargUser = new CargadorUser();
+		ICargadorUsrOPUD usrOPUD = new CargadorUsrOPUD();
+		cargUser.setIdUsuario(idUser);
+		cargUser.crearUsuarioBase();
+	}
+
 
 }

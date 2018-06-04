@@ -1,5 +1,6 @@
 package logica.cargador.usuario;
 
+import apiUsuario.IUsuario;
 import datos.usuario.usuario.CalificacionDAO;
 import datos.usuario.usuario.UsrOpudDAO;
 import logica.usuario.calificador.iCalificable;
@@ -31,11 +32,19 @@ public class CargadorUsrOPUD implements ICargadorUsrOPUD {
 
 	@Override
 	public void cargarUsuarioOpud() {
-		userOPUD = opudDAO.cargarUsuario(usuario.getIdUsuario());		
+		userOPUD = opudDAO.cargarUsuario(usuario.getIdUsuario());
+		userOPUD.setUsuario(usuario.getUsuario());
+		cargarCalificacion();
 	}
 	
 	public void cargarCalificacion() {		
 		userOPUD.setCalificacion(califDao.verCalificacion(usuario.getIdUsuario()));
+	}
+
+	@Override
+	public IUsuario getUsuarioOPUD() {
+		IUsuario u = userOPUD;		
+		return u;
 	}
 	
 

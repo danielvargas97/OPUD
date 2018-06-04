@@ -71,6 +71,12 @@ public class UsrOpudDAO {
 			myConn.soltarConexion();
 		}
 		
+	}
+
+	public void setUsrOPUD(UsuarioOPUD usrOPUD) {
+		this.usrOPUD = usrOPUD;
 	} 
+	
+	
 	
 }

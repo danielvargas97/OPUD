@@ -11,6 +11,7 @@ public interface IPublicacionAdmin {
 	// Registrador
 	public void crearPublicacion(int tipo);
 	public void asignarUsuario(IUsuario user);
+	public void registrarTitulo(String titulo);
 	public void registrarFechaPublicacion(String dia,String mes, String anho);
 	public void registrarObjeto(String nombre, String descripcion, String estado, int idCategoria);	
 	public void publicar();

@@ -1,20 +1,31 @@
 package test;
 
-import apiUsuario.ILogin;
-import logica.usuario.fachadaUser.UsuarioLogin;
+
+import apiUsuario.IUsuario;
+import apiUsuario.IUsuarioAdmin;
+import logica.usuario.fachadaUser.RegistroUsr;
+
 
 public class R {
 
 	public static void main(String[] args) {
-		ILogin log = new UsuarioLogin();
+		IUsuarioAdmin usr = new RegistroUsr();
+		/*
+		usr.asignarDatosUsuario("Dino", "Zoff", "dzoff@example.com", "79256255","CC");
+		usr.asignarContrasena("dxdydz");
+		usr.registrarUsuario();
+	
+		usr.registrarAdmin("End");
+		*/
+		IUsuario u = usr.cargarAdmin("79256255");
 		
-		if(log.iniciarSesion("1016099017", "coconut", 1)) {
-			System.out.println(":v");
-		}
-		else {
-			System.out.println(">>:v");
-		}
-
+		System.out.println(u.getIdUser());
+		System.out.println(u.getNombre());		
+		System.out.println(u.getApellido());
+		System.out.println(u.getCorreo());
+		System.out.println(u.getRol());
+		System.out.println(u.getCodigo());
+		
 	}
 
 }
