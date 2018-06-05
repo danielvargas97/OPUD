@@ -13,4 +13,8 @@ public interface IMensajeria {
 	public IMensaje verMensajeSalida(int index);
 	public void redactar(String origen, String destino,String asunto, String mensaje);
 	public IMensaje verMensajeRedactado();
+	
+	public void setIdUser(String idUser);
+	public void cargarMensajeria();
+	
 }

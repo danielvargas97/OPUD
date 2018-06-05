@@ -14,9 +14,9 @@ public class MensajeMaster implements IMensajeria {
 	private IMensaje mensajeActual;
 	private IBandejaEntrada bandeja;
 	private MensajeriaDAO mdao;
+	private String idUser;
 	
-	public MensajeMaster(String idUser) {
-		cargarBandeja(idUser);
+	public MensajeMaster() {
 	}
 
 	public List<IMensaje> verMensajesEntrantes(){
@@ -65,5 +65,18 @@ public class MensajeMaster implements IMensajeria {
 		mdao = new MensajeriaDAO();
 		mdao.cargarCorreo(id);
 		bandeja = mdao.getBandeja();
-	}	
+	}
+
+	public void setIdUser(String idUser) {
+		this.idUser = idUser;
+	}
+
+	@Override
+	public void cargarMensajeria() {
+		cargarBandeja(idUser);		
+	}
+	
+	
+	
+	
 }

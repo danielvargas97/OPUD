@@ -10,6 +10,10 @@ public interface IUsuarioAdmin {
 	
 	public IUsuario cargarUsuario(String idUser);
 	public IUsuario cargarAdmin(String idUser);
-		
+	
 	public boolean iniciarSesion(String user, String pass, int tipo);
+	public void calificarUsuario(String idCalificado, int nota);
+	public int verNota();
+	
+	//public boolean iniciarSesion(String user, String pass, int tipo);
 }

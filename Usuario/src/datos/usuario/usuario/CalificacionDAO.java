@@ -16,7 +16,7 @@ public class CalificacionDAO {
 		
 	}
 	
-	public void insertarCalificacion() throws SQLException {
+	public void insertarCalificacion(){
 		StringBuilder sql = new StringBuilder();
 		ConexionOracle myConn = ConexionOracle.getInstance();
 		
@@ -33,8 +33,8 @@ public class CalificacionDAO {
 			ps.close();
 			myConn.realizarCommit();
 		}
-		catch(SQLException ex) {
-			throw new SQLException("Error en la insercion de calificacion");
+		catch(Exception ex) {
+			ex.printStackTrace();
 		}
 		finally {
 			myConn.soltarConexion();
@@ -58,11 +58,10 @@ public class CalificacionDAO {
 			
 			while(rs.next()) {
 				calificacion.setNota(rs.getInt(1));
-			}
-			
+			}			
 			return calificacion;
 		}
-		catch(SQLException ex) {
+		catch(Exception ex) {
 			ex.printStackTrace();
 			return null;
 		}

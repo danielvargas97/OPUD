@@ -4,6 +4,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/Users/PC/Downloads/ojdbc6.jar"/>
 	<classpathentry kind="lib" path="C:/Users/PC/Documents/FIS/OPUD/API/DatosOPUD.jar"/>
-	<classpathentry kind="lib" path="C:/Users/PC/Documents/FIS/OPUD/API/apiMaster.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PC/Documents/FIS/OPUD/Central/utilidades/apiMaster.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

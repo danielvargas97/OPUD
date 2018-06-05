@@ -19,7 +19,9 @@ public class XTest {
 		*/
 		String id = "1015065090";
 		
-		IMensajeria mens = new MensajeMaster(id);
+		IMensajeria mens = new MensajeMaster();
+		mens.setIdUser(id);
+		mens.cargarMensajeria();
 		List<IMensaje> x = mens.verMensajesEntrantes();
 		List<IMensaje> y = mens.verMensajesEnviados();
 		/*IMensaje x = mens.verMensajeEntrante(0);

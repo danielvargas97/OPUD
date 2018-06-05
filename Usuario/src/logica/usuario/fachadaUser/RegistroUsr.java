@@ -2,12 +2,15 @@ package logica.usuario.fachadaUser;
 
 import apiUsuario.IUsuario;
 import apiUsuario.IUsuarioAdmin;
+import datos.usuario.usuario.UsuarioDAO;
 import logica.cargador.usuario.CargadorAdmin;
 import logica.cargador.usuario.CargadorUser;
 import logica.cargador.usuario.CargadorUsrOPUD;
 import logica.cargador.usuario.ICargadorAdmin;
 import logica.cargador.usuario.ICargadorUser;
 import logica.cargador.usuario.ICargadorUsrOPUD;
+import logica.usuario.calificar.CalificacionCliente;
+import logica.usuario.calificar.ICalificacionCliente;
 import logica.usuario.contrasena.Contrasena;
 import logica.usuario.contrasenaInterface.IContrasena;
 import logica.usuario.registrador.IRegistroAdmin;
@@ -23,6 +26,8 @@ public class RegistroUsr implements IUsuarioAdmin {
 	private IRegistroAdmin regAdmin;
 	private IRegistroOPUD regOpud;
 	private ICargadorUser cargUser; 
+	private String idUserActual;
+	
 	
 	public RegistroUsr() {
 		this.registro = new RegistroUsuario();
@@ -84,8 +89,14 @@ public class RegistroUsr implements IUsuarioAdmin {
 	
 	@Override
 	public boolean iniciarSesion(String user, String pass, int tipo) {
-		// TODO Auto-generated method stub
-		return false;
+		UsuarioDAO userDAO = new UsuarioDAO();
+		if(userDAO.login(user, pass, tipo)) {
+			this.idUserActual = user;
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	private void precargarUsuario(String idUser) {
@@ -93,6 +104,19 @@ public class RegistroUsr implements IUsuarioAdmin {
 		ICargadorUsrOPUD usrOPUD = new CargadorUsrOPUD();
 		cargUser.setIdUsuario(idUser);
 		cargUser.crearUsuarioBase();
+	}
+
+	@Override
+	public void calificarUsuario(String idCalificado, int nota) {
+		ICalificacionCliente cl = new CalificacionCliente();
+		cl.calificar(idCalificado, idUserActual, nota);
+		
+	}
+
+	@Override
+	public int verNota() {
+		ICalificacionCliente cl = new CalificacionCliente();		
+		return cl.verNota(idUserActual);
 	}
 
 

@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+
+Name: COMPONENTE
+nombre: apiUsuario.IUsuarioAdmin
+clase: logica.usuario.fachadaUser.RegistroUsr
